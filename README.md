@@ -1,6 +1,8 @@
 # bee_store
 
-A new Flutter project.
+> Kurulumlarda sorun yaşayanlar: [DartPad](https://dartpad.dev/) kullanabilirler.
+
+[Kurulumlar](kurulumlar.md)
 
 ## Getting Started
 
