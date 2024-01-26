@@ -12,41 +12,125 @@ void main() {
 
   bool isDebug = false;
 
-  Widget myApp = MaterialApp(
-    debugShowCheckedModeBanner: isDebug,
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text("Home"),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            icon: Image.asset(
-              'varliklar/notification.png',
-              width: 24,
-              height: 24,
-            ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Image.asset(
-              'varliklar/bag.png',
-              width: 24,
-              height: 24,
-            ),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Center(
-        child: Text(
-          'Hello, $name! How are you?',
-        ),
-      ),
-      drawer: const Drawer(),
-    ),
-  );
+  runApp(const MyApp());
+}
 
-  runApp(myApp);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    String name = "Serbay";
+
+    bool isDebug = false;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: isDebug,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Home"),
+          centerTitle: false,
+          actions: [
+            IconButton(
+              icon: Image.asset(
+                'varliklar/notification.png',
+                width: 24,
+                height: 24,
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Image.asset(
+                'varliklar/bag.png',
+                width: 24,
+                height: 24,
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            const SizedBox(height: 24),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Search Anything...",
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(
+                      color: Color(0xFFD1D5DB),
+                      width: 1,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Text(
+                    'Categories',
+                    style: TextStyle(
+                      color: Color(0xFF1F2937),
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      height: 0.11,
+                      letterSpacing: 0.07,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    'View All ->',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Color(0xFF6B7280),
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      height: 0.12,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (int i = 0; i < 10; i++)
+                    Column(
+                      children: [
+                        if (i % 2 == 0)
+                          Image.asset('varliklar/fashion.png')
+                        else
+                          Image.asset('varliklar/electronic.png'),
+                        Text(i % 2 == 0 ? "Fashion" : "Electronic"),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+            Text(
+              'Hello, $name! How are you?',
+            ),
+            Text(
+              'Hello, $name! How are you?',
+            ),
+            Text(
+              'Hello, $name! How are you?',
+            ),
+          ],
+        ),
+        drawer: const Drawer(),
+      ),
+    );
+  }
 }
 
 // Veri tipleri
