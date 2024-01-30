@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'dosya.dart';
+import 'harun_odev_2.dart';
 
 // Fonksiyon tanımlamak
 void main() {
@@ -12,7 +13,7 @@ void main() {
 
   bool isDebug = false;
 
-  runApp(const MyApp());
+  runApp(const HarunOdev2());
 }
 
 class MyApp extends StatelessWidget {
@@ -181,6 +182,12 @@ class Insan {
       this.okullaGecenYillar) {
     print("İnsan sınıfı oluşturuldu.");
   }
+
+  int dogumYiliniHesapla() {
+    DateTime simdi = DateTime.now(); // now() methodu isimlendirilmiş oluşturucu
+    // metottur. Yani named constructor
+    return simdi.year - yas;
+  }
 }
 
 class Ogrenci extends Insan {
@@ -198,5 +205,10 @@ class Ogrenci extends Insan {
     this.okulIsmi,
   ) {
     print("Öğrenci sınıfı oluşturuldu.");
+  }
+
+  @override
+  int dogumYiliniHesapla() {
+    return 2002;
   }
 }
