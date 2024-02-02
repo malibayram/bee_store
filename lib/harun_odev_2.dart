@@ -1,6 +1,6 @@
-import 'dart:async';
-
 import 'package:bee_store/parcalar/anasayfa_urun_widget.dart';
+import 'package:bee_store/parcalar/category_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HarunOdev2 extends StatefulWidget {
@@ -33,7 +33,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
     //Hedef an
     DateTime targetDate = DateTime(2024, 1, 30, 11);
 
-    //Tekrar dedin sayaç(zamana bağlı işlemler için)
+    /* //Tekrar dedin sayaç(zamana bağlı işlemler için)
     Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         int nextPage = (controller.page?.round() ?? 0) + 1;
@@ -48,7 +48,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
         sayac++;
         _timeUntilTarget = targetDate.difference(DateTime.now());
       });
-    });
+    }); */
 
     //Hedef ana kalan sürenin hesaplandığı yer
     _timeUntilTarget = targetDate.difference(DateTime.now());
@@ -176,45 +176,71 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 //Katagori Resimler (Kaydırma)
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      const SizedBox(
-                        width: 16,
+                      const SizedBox(width: 6),
+                      FutureBuilder(
+                        future: FirebaseFirestore.instance
+                            .collection('categories')
+                            .doc('xKxJYbt23ggbM6rReNAs')
+                            .get()
+
+                        /* Future.microtask(
+                          () async {
+                            await Future.delayed(
+                                const Duration(milliseconds: 2500));
+
+                            return "Title";
+                          },
+                        ) */
+                        ,
+                        builder: (_, snapshot) {
+                          print(snapshot.data);
+
+                          if (snapshot.hasData) {
+                            final data = snapshot.data!.data();
+                            return CategoryWidget(
+                              title: data == null ? 'Bulunamadı' : data['name'],
+                              imageUrl: "",
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
                       ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/FashionCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Fashion"),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "varliklar/FashionCart.png",
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: Text("Fashion"),
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        width: 20,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              "varliklar/ElectronicCart.png",
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: Text("Electronics"),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/ElectronicCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Electronics"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
+                      const SizedBox(width: 20),
                       Column(
                         children: [
                           Image.asset(
@@ -322,15 +348,11 @@ class _HarunOdev2State extends State<HarunOdev2> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
+                      const SizedBox(width: 16),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 //Slider
                 SizedBox(
                   width: 360,
