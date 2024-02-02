@@ -51,6 +51,7 @@ class DefaultFirebaseOptions {
     authDomain: 'beestore-itu.firebaseapp.com',
     storageBucket: 'beestore-itu.appspot.com',
     measurementId: 'G-HRKXZ6Y07C',
+    databaseURL: '',
   );
 
   static const FirebaseOptions android = FirebaseOptions(

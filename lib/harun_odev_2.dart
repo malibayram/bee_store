@@ -199,8 +199,6 @@ class _HarunOdev2State extends State<HarunOdev2> {
                         ) */
                         ,
                         builder: (_, snapshot) {
-                          print(snapshot.data);
-
                           if (snapshot.hasData) {
                             final data = snapshot.data!.data();
                             return CategoryWidget(
