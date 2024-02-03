@@ -112,12 +112,13 @@ class _HarunOdev2State extends State<HarunOdev2> {
                 onPressed: () {},
               ),
               IconButton(
-                  icon: Image.asset(
-                    "varliklar/bag.png",
-                    width: 24.5,
-                    height: 24.5,
-                  ),
-                  onPressed: () {})
+                icon: Image.asset(
+                  "varliklar/bag.png",
+                  width: 24.5,
+                  height: 24.5,
+                ),
+                onPressed: () {},
+              )
             ],
           ),
           body: SingleChildScrollView(
