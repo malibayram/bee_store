@@ -1,7 +1,8 @@
 import 'package:bee_store/parcalar/anasayfa_urun_widget.dart';
-import 'package:bee_store/parcalar/category_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'parcalar/category_widget.dart';
 
 class HarunOdev2 extends StatefulWidget {
   const HarunOdev2({Key? key}) : super(key: key);
@@ -139,9 +140,10 @@ class _HarunOdev2State extends State<HarunOdev2> {
                         width: 10,
                       ),
                       border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                          borderSide:
-                              BorderSide(color: Color(0xFFD1D5DB), width: 1)),
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide:
+                            BorderSide(color: Color(0xFFD1D5DB), width: 1),
+                      ),
                     ),
                   ),
                 ),
@@ -181,174 +183,29 @@ class _HarunOdev2State extends State<HarunOdev2> {
                 //Katagori Resimler (Kaydırma)
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      FutureBuilder(
-                        future: FirebaseFirestore.instance
-                            .collection('categories')
-                            .doc('xKxJYbt23ggbM6rReNAs')
-                            .get()
-
-                        /* Future.microtask(
-                          () async {
-                            await Future.delayed(
-                                const Duration(milliseconds: 2500));
-
-                            return "Title";
-                          },
-                        ) */
-                        ,
-                        builder: (_, snapshot) {
-                          if (snapshot.hasData) {
-                            final data = snapshot.data!.data();
-                            return CategoryWidget(
-                              title: data == null ? 'Bulunamadı' : data['name'],
-                              imageUrl: "",
-                            );
-                          } else {
-                            return const CircularProgressIndicator();
-                          }
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Column(
+                  child: FutureBuilder(
+                    future: FirebaseFirestore.instance
+                        .collection('categories')
+                        .get(),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasData) {
+                        final categoryList =
+                            snapshot.data!.docs.map((e) => e.data()).toList();
+                        return Row(
                           children: [
-                            Image.asset(
-                              "varliklar/FashionCart.png",
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.0),
-                              child: Text("Fashion"),
-                            ),
+                            const SizedBox(width: 6),
+                            for (final data in categoryList)
+                              CategoryWidget(
+                                title: data['name'],
+                                imageUrl: data['imageUrl'],
+                              ),
+                            const SizedBox(width: 16),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "varliklar/ElectronicCart.png",
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.0),
-                              child: Text("Electronics"),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/AppliancesCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Appliances"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/BeautyCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Beauty"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/FurnitureCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Furiture"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/FashionCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Fashion"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/ElectronicCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Electronics"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 20),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/AppliancesCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Appliances"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/BeautyCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Beauty"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "varliklar/FurnitureCart.png",
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text("Furiture"),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                    ],
+                        );
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(height: 16),

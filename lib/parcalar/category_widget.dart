@@ -16,7 +16,11 @@ class CategoryWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
         children: [
-          if (imageUrl.isNotEmpty) Image.network(imageUrl),
+          if (imageUrl.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.network(imageUrl, height: 29),
+            ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(title),
