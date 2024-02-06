@@ -35,6 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cloud_firestore: ^4.15.2
   firebase_core: ^2.25.2
+  flutter_native_splash: ^2.3.10
+
+flutter_native_splash:
+  color: "#1D4ED8"
+  image: varliklar/icon.png
 
 dev_dependencies:
   flutter_test:
