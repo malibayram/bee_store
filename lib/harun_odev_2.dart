@@ -106,7 +106,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
             actions: [
               IconButton(
                 icon: Image.asset(
-                  "varliklar/notification.png",
+                  "varliklar/resimler/notification.png",
                   width: 24.5,
                   height: 24.5,
                 ),
@@ -114,7 +114,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
               ),
               IconButton(
                 icon: Image.asset(
-                  "varliklar/bag.png",
+                  "varliklar/resimler/bag.png",
                   width: 24.5,
                   height: 24.5,
                 ),
@@ -135,7 +135,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     decoration: InputDecoration(
                       labelText: "Search Anything...",
                       prefixIcon: Image.asset(
-                        "varliklar/search-normal.png",
+                        "varliklar/resimler/search-normal.png",
                         height: 10,
                         width: 10,
                       ),
@@ -217,19 +217,19 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     controller: controller,
                     children: <Widget>[
                       Center(
-                        child: Image.asset("Varliklar/Slider1.png"),
+                        child: Image.asset("varliklar/resimler/Slider1.png"),
                       ),
                       Center(
-                        child: Image.asset("Varliklar/Slider2.jpg"),
+                        child: Image.asset("varliklar/resimler/Slider2.jpg"),
                       ),
                       Center(
-                        child: Image.asset("Varliklar/Slider3.jpg"),
+                        child: Image.asset("varliklar/resimler/Slider3.jpg"),
                       ),
                       Center(
-                        child: Image.asset("Varliklar/Slider4.jpg"),
+                        child: Image.asset("varliklar/resimler/Slider4.jpg"),
                       ),
                       Center(
-                        child: Image.asset("Varliklar/Slider5.jpg"),
+                        child: Image.asset("varliklar/resimler/Slider5.jpg"),
                       ),
                     ],
                   ),
@@ -362,7 +362,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                                         Column(
                                           children: [
                                             Image.asset(
-                                                "varliklar/Running.png"),
+                                                "varliklar/resimler/Running.png"),
                                             const Padding(
                                               padding: EdgeInsets.all(8.0),
                                               child: Text("Running Shoes"),
@@ -390,7 +390,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                                         Column(
                                           children: [
                                             Image.asset(
-                                                "varliklar/Sneakers.png"),
+                                                "varliklar/resimler/Sneakers.png"),
                                             const Padding(
                                               padding: EdgeInsets.all(8.0),
                                               child: Text("Sneakers"),
@@ -424,7 +424,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                                           Column(
                                             children: [
                                               Image.asset(
-                                                  "varliklar/Wrist.png"),
+                                                  "varliklar/resimler/Wrist.png"),
                                               const Padding(
                                                 padding: EdgeInsets.all(8.0),
                                                 child: Text("Wrist Watches"),
@@ -452,7 +452,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                                           Column(
                                             children: [
                                               Image.asset(
-                                                  "varliklar/Speaker.png"),
+                                                  "varliklar/resimler/Speaker.png"),
                                               const Padding(
                                                 padding: EdgeInsets.all(8.0),
                                                 child:
@@ -531,7 +531,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                       const Padding(
                         padding: EdgeInsets.all(10.0),
                         child: AnasayfaUrunWidget(
-                          resimAdresi: "varliklar/Adidas1.png",
+                          resimAdresi: "varliklar/resimler/Adidas1.png",
                           baslik: "Adidas wihite sneakers for men",
                           usdFiyat: 66.5,
                           indirimOrani: 50,
@@ -540,7 +540,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/Nike1.png",
+                        resimAdresi: "varliklar/resimler/Nike1.png",
                         baslik: "Nike wihite sneakers for men",
                         usdFiyat: 86.5,
                         indirimOrani: 40,
@@ -549,7 +549,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Image.asset(
-                        "varliklar/NikeSky2.png",
+                        "varliklar/resimler/NikeSky2.png",
                         width: 150,
                       ),
                     )
@@ -593,21 +593,21 @@ class _HarunOdev2State extends State<HarunOdev2> {
                     Padding(
                       padding: const EdgeInsets.all(11.0),
                       child: Image.asset(
-                        "varliklar/Allen.png",
+                        "varliklar/resimler/Allen.png",
                         width: 150,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        "varliklar/Calvin.png",
+                        "varliklar/resimler/Calvin.png",
                         width: 150,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(11.0),
                       child: Image.asset(
-                        "varliklar/H&M.png",
+                        "varliklar/resimler/H&M.png",
                         width: 150,
                       ),
                     )
@@ -632,8 +632,8 @@ class _HarunOdev2State extends State<HarunOdev2> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image:
-                                      AssetImage("varliklar/ProfilPhoto1.jpg")),
+                                  image: AssetImage(
+                                      "varliklar/resimler/ProfilPhoto1.jpg")),
                             ),
                           ),
                         ],

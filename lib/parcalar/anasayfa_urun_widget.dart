@@ -26,7 +26,7 @@ class AnasayfaUrunWidget extends StatefulWidget {
 }
 
 /* String baslik = "Adidas wihite sneakers for men";
-String resimAdresi = "varliklar/Adidas1.png";
+String resimAdresi = "varliklar/resimler/Adidas1.png";
 
 double usdFiyat = 68.5;
 double indirimOrani = 50; */
