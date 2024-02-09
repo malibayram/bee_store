@@ -1,24 +1,25 @@
-import 'package:bee_store/sayfalar/kayit_sayfasi.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class GirisSayfasi extends StatefulWidget {
-  const GirisSayfasi({super.key});
+class KayitSayfasi extends StatefulWidget {
+  const KayitSayfasi({super.key});
 
   @override
-  State<GirisSayfasi> createState() => _GirisSayfasiState();
+  State<KayitSayfasi> createState() => _KayitSayfasiState();
 }
 
-class _GirisSayfasiState extends State<GirisSayfasi> {
+class _KayitSayfasiState extends State<KayitSayfasi> {
   var _yukleniyor = false;
   var _hataMesaji = "";
+  var _isimSoyisim = "";
   var _email = "";
   var _sifre = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Giriş Sayfası")),
+      appBar: AppBar(title: const Text("Kayıt Sayfası")),
       body: Padding(
         padding: const EdgeInsets.all(48.0),
         child: Column(
@@ -33,6 +34,22 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
                   fontSize: 22,
                 ),
               ),
+            TextField(
+              decoration: const InputDecoration(
+                hintText: "İsmini ve soyismini gir",
+              ),
+              keyboardType: TextInputType.name,
+              onChanged: (deger) {
+                _isimSoyisim = deger;
+                debugPrint(deger);
+
+                if (_hataMesaji.isNotEmpty) {
+                  _hataMesaji = "";
+                  setState(() {});
+                }
+              },
+            ),
+            const SizedBox(height: 24),
             TextField(
               decoration: const InputDecoration(hintText: "Email adresini gir"),
               keyboardType: TextInputType.emailAddress,
@@ -61,17 +78,18 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
                 }
               },
             ),
-            const SizedBox(height: 32),
             if (_yukleniyor)
               const CircularProgressIndicator()
             else
               TextButton(
                 onPressed: () {
-                  if (_email.isNotEmpty && _sifre.isNotEmpty) {
+                  if (_email.isNotEmpty &&
+                      _sifre.isNotEmpty &&
+                      _isimSoyisim.isNotEmpty) {
                     _yukleniyor = true;
                     setState(() {});
                     FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
+                        .createUserWithEmailAndPassword(
                       email: _email,
                       password: _sifre,
                     )
@@ -81,25 +99,34 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
                         _yukleniyor = false;
                         setState(() {});
                       },
-                    );
+                    ).then((value) async {
+                      final uid = value.user?.uid;
+                      final kullanici = {
+                        'name': _isimSoyisim,
+                        'email': _email,
+                        'kayitTarihi': FieldValue.serverTimestamp(),
+                      };
+
+                      if (uid == null) {
+                        await FirebaseFirestore.instance
+                            .collection('users')
+                            .add(kullanici);
+                      } else {
+                        await FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(uid)
+                            .set(kullanici);
+                      }
+                      if (mounted) Navigator.of(context).pop();
+                    });
                   } else {
-                    _hataMesaji = "Email adresi ve şifre boş geçilemez!";
+                    _hataMesaji =
+                        "İsim soyisim, email adresi ve şifre boş geçilemez!";
                     setState(() {});
                   }
                 },
-                child: const Text("Giriş Yap"),
+                child: const Text("Kayıt Yap"),
               ),
-            const Divider(height: 64),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) {
-                    return const KayitSayfasi();
-                  }),
-                );
-              },
-              child: const Text("Kayıt Ol"),
-            ),
           ],
         ),
       ),
