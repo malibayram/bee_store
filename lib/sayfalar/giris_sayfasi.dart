@@ -67,7 +67,12 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
             else
               TextButton(
                 onPressed: () {
-                  if (_email.isNotEmpty && _sifre.isNotEmpty) {
+                  final regexExp = RegExp(
+                      r"^[A-Za-z0-9._+\-\']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$");
+                  final isValid =
+                      regexExp.hasMatch(_email) && _sifre.length > 5;
+
+                  if (isValid) {
                     _yukleniyor = true;
                     setState(() {});
                     FirebaseAuth.instance
@@ -83,7 +88,7 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
                       },
                     );
                   } else {
-                    _hataMesaji = "Email adresi ve şifre boş geçilemez!";
+                    _hataMesaji = "Email adresi veya şifre geçeriz!";
                     setState(() {});
                   }
                 },
