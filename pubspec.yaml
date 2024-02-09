@@ -36,10 +36,7 @@ dependencies:
   cloud_firestore: ^4.15.2
   firebase_core: ^2.25.2
   flutter_native_splash: ^2.3.10
-
-flutter_native_splash:
-  color: "#1D4ED8"
-  image: varliklar/icon.png
+  firebase_auth: ^4.17.4
 
 dev_dependencies:
   flutter_test:
@@ -53,10 +50,14 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.13.1
 
+flutter_native_splash:
+  color: "#1D4ED8"
+  image: varliklar/icon.png
+
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "varliklar/icon.png"
+  mage_path: "varliklar/icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
