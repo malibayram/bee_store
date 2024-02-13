@@ -58,16 +58,9 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
 
                         return IconButton(
                           onPressed: () {
-                            if (inCart) {
-                              userDoc.update({
-                                'cart':
-                                    FieldValue.arrayRemove([widget.urun.uid])
-                              });
-                            } else {
-                              userDoc.update({
-                                'cart': FieldValue.arrayUnion([widget.urun.uid])
-                              });
-                            }
+                            context
+                                .read<SepetCubit>()
+                                .sepeteUrunEkleCikar(widget.urun.uid);
                           },
                           icon: inCart
                               ? const Icon(Icons.shopping_bag)

@@ -1,4 +1,5 @@
 import 'package:bee_store/cubitler/sepet_cubit.dart';
+import 'package:bee_store/sayfalar/sepet_sayfasi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +39,17 @@ class SepetButtonWidget extends StatelessWidget {
           )
         ],
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => BlocProvider.value(
+              value: BlocProvider.of<SepetCubit>(context),
+              child: const SepetSayfasi(),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 
 import '../parcalar/category_widget.dart';
 
-class HarunOdev2 extends StatefulWidget {
-  const HarunOdev2({Key? key}) : super(key: key);
+class Anasayfa extends StatefulWidget {
+  const Anasayfa({Key? key}) : super(key: key);
 
   @override
-  State createState() => _HarunOdev2State();
+  State createState() => _AnasayfaState();
 }
 
-class _HarunOdev2State extends State<HarunOdev2> {
+class _AnasayfaState extends State<Anasayfa> {
   //Kalan süre değişkeni
   late Duration _timeUntilTarget;
   //pageView conterller değişkeni
