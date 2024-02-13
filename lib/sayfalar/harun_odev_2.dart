@@ -1,6 +1,7 @@
 import 'package:bee_store/modeller/urun_model.dart';
 import 'package:bee_store/parcalar/anasayfa_urun_widget.dart';
 import 'package:bee_store/parcalar/app_drawer.dart';
+import 'package:bee_store/parcalar/sepet_button_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -112,14 +113,7 @@ class _HarunOdev2State extends State<HarunOdev2> {
             ),
             onPressed: () {},
           ),
-          IconButton(
-            icon: Image.asset(
-              "varliklar/resimler/bag.png",
-              width: 24.5,
-              height: 24.5,
-            ),
-            onPressed: () {},
-          )
+          const SepetButtonWidget(),
         ],
       ),
       body: SingleChildScrollView(
