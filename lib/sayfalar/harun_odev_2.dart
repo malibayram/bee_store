@@ -1,3 +1,4 @@
+import 'package:bee_store/modeller/urun_model.dart';
 import 'package:bee_store/parcalar/anasayfa_urun_widget.dart';
 import 'package:bee_store/parcalar/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -518,36 +519,27 @@ class _HarunOdev2State extends State<HarunOdev2> {
                 ],
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                for (int i = 0; i < 5; i++)
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: AnasayfaUrunWidget(
-                      resimAdresi: "varliklar/resimler/Adidas1.png",
-                      baslik: "Adidas wihite sneakers for men",
-                      usdFiyat: 66.5,
-                      indirimOrani: 50,
+            FutureBuilder(
+              future: FirebaseFirestore.instance.collection('products').get(),
+              builder: (_, snapshot) {
+                if (snapshot.hasData) {
+                  final urunler = snapshot.data!.docs
+                      .map((e) => UrunModel.fromFirestore(e.data(), e.id));
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (final urun in urunler)
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: AnasayfaUrunWidget(urun: urun),
+                          ),
+                      ],
                     ),
-                  ),
-                const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: AnasayfaUrunWidget(
-                    resimAdresi: "varliklar/resimler/Nike1.png",
-                    baslik: "Nike wihite sneakers for men",
-                    usdFiyat: 86.5,
-                    indirimOrani: 40,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    "varliklar/resimler/NikeSky2.png",
-                    width: 150,
-                  ),
-                )
-              ]),
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
             ),
             const SizedBox(height: 20),
             // Recommended for you
