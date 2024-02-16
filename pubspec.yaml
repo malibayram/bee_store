@@ -38,6 +38,7 @@ dependencies:
   flutter_native_splash: ^2.3.10
   firebase_auth: ^4.17.4
   flutter_bloc: ^8.1.4
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
